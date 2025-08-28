@@ -8,20 +8,20 @@ interface LoadingScreenProps {
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onLoadingComplete, 500);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 50);
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setProgress(prev => {
+      if (prev >= 100) {
+        clearInterval(interval);
+        setTimeout(onLoadingComplete, 300); // faster exit
+        return 100;
+      }
+      return prev + 5; // increase by 5 instead of 2
+    });
+  }, 30); // update every 30ms
 
-    return () => clearInterval(interval);
-  }, [onLoadingComplete]);
+  return () => clearInterval(interval);
+}, [onLoadingComplete]);
 
   return (
     <motion.div
