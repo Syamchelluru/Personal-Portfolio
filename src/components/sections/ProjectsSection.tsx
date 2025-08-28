@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 // Import images
-import nighaImg from "../assets/nigha.png";
+import nighaImg from "/assets/nigha.png";
 import revogueImg from "../assets/revogue-finds.png";
 import parkingImg from "../assets/parking.png";
 import endImg from "../assets/END.png";
@@ -20,7 +20,7 @@ const ProjectsSection: React.FC = () => {
       liveDemo: "https://nigha.vercel.app/",
       github: "https://github.com/Syamchelluru/INTERN",
       gradient: "from-emerald-500 to-teal-600",
-      image: "src/assets/nigha.png",
+      image: "/assets/nigha.png",
     },
     {
       title: "Revogue Finds",
@@ -30,7 +30,7 @@ const ProjectsSection: React.FC = () => {
       liveDemo: "https://revouge-finds.netlify.app/",
       github: "https://github.com/Syamchelluru/REVOUGE-FINDS",
       gradient: "from-yellow-500 to-orange-600",
-      image: "src/assets/revogue-finds.png",
+      image: "/assets/revogue-finds.png",
     },
     {
       title: "Parking Space Finder",
@@ -40,7 +40,7 @@ const ProjectsSection: React.FC = () => {
       liveDemo: "https://parking-finder-app.vercel.app/",
       github: "https://github.com/KishoreBabu7/parking-finder-app",
       gradient: "from-blue-500 to-purple-600",
-      image: "src/assets/parking.png",
+      image: "/assets/parking.png",
     },
     {
       title: "Encryption & Decryption Tool",
@@ -50,7 +50,7 @@ const ProjectsSection: React.FC = () => {
       liveDemo: "https://endencryption.netlify.app/",
       github: "https://github.com/Syamchelluru/EncryptAndDecrypt-React",
       gradient: "from-red-500 to-pink-600",
-      image: "src/assets/END.png",
+      image: "/assets/END.png",
     },
   ];
 

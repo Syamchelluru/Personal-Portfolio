@@ -49,7 +49,7 @@ const HomeSection: React.FC = () => {
           whileHover={{ scale: 1.05, rotate: 5 }}
         >
           <img 
-            src="src/assets/ssr.JPG" 
+            src="/assets/ssr.JPG" 
             alt="Chelluru Syamasundara Rao"
             className="w-full h-full object-cover"
           />
