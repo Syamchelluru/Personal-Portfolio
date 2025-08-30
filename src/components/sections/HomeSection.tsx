@@ -42,9 +42,9 @@ const HomeSection: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Profile Image Placeholder */}
+        {/* Profile Image */}
         <motion.div
-          className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center overflow-hidden shadow-2xl border-4 border-white/20"
+          className="w-64 h-64 md:w-84 md:h-84 lg:w-64 lg:h-64 mx-auto mb-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center overflow-hidden shadow-2xl border-4 border-white/20"
           variants={itemVariants}
           whileHover={{ scale: 1.05, rotate: 5 }}
         >

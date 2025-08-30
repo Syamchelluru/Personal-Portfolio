@@ -27,7 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
     <>
       {/* Desktop Navigation */}
       <motion.nav
-        className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 hidden md:block"
+        className="fixed top-4 right-4 z-50 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 hidden md:block"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
