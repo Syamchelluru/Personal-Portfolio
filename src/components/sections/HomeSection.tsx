@@ -31,7 +31,7 @@ const HomeSection: React.FC = () => {
     { icon: FaPhone, href: 'tel:9014073717', label: 'Phone' },
     { icon: FaLinkedin, href: 'https://www.linkedin.com/in/syamasundara-rao-chelluru-707b3a2a5/', label: 'LinkedIn' },
     { icon: FaGithub, href: 'https://github.com/Syamchelluru', label: 'GitHub' },
-    { icon: FaGlobe, href: 'https://ssrao.netlify.app/', label: 'Portfolio' },
+   
   ];
 
   return (
