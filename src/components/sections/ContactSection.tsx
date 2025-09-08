@@ -1,76 +1,103 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Globe,
+} from "lucide-react";
+import emailjs from "emailjs-com";
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<null | "success" | "error">(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      await emailjs.send(
+        "service_355z6rl", // ✅ Your Service ID
+        "template_og8ocbq", // ✅ Your Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        "zs6S7PYG9OXmDMBqC" // ✅ Your Public Key
+      );
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'syamchelluru8@gmail.com',
-      href: 'mailto:ssraochelluru@gmail.com',
-      color: 'from-blue-500 to-cyan-500'
+      label: "Email",
+      value: "syamchelluru8@gmail.com",
+      href: "mailto:syamchelluru8@gmail.com",
+      color: "from-blue-500 to-cyan-500",
     },
-   
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Andhra Pradesh, India',
-      href: '#',
-      color: 'from-purple-500 to-pink-500'
-    }
+      label: "Location",
+      value: "Andhra Pradesh, India",
+      href: "#",
+      color: "from-purple-500 to-pink-500",
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/Syamchelluru',
-      color: 'hover:text-gray-300'
+      label: "GitHub",
+      href: "https://github.com/Syamchelluru",
+      color: "hover:text-gray-300",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/syamasundara-rao-chelluru-707b3a2a5/',
-      color: 'hover:text-blue-400'
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/syamasundara-rao-chelluru-707b3a2a5/",
+      color: "hover:text-blue-400",
     },
     {
       icon: Globe,
-      label: 'Portfolio',
-      href: 'https://ssrao.netlify.app/',
-      color: 'hover:text-emerald-400'
-    }
+      label: "Portfolio",
+      href: "https://ssrao.netlify.app/",
+      color: "hover:text-emerald-400",
+    },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
     },
   };
 
@@ -79,10 +106,7 @@ const ContactSection: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
@@ -100,7 +124,8 @@ const ContactSection: React.FC = () => {
             Get In Touch
           </h2>
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
-            Let's discuss your next project or just say hello. I'm always open to new opportunities and collaborations.
+            Let&apos;s discuss your next project or just say hello. I&apos;m
+            always open to new opportunities and collaborations.
           </p>
         </motion.div>
 
@@ -108,7 +133,9 @@ const ContactSection: React.FC = () => {
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Contact Information
+              </h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
@@ -118,7 +145,9 @@ const ContactSection: React.FC = () => {
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${info.color} flex items-center justify-center mr-4 group-hover:shadow-lg transition-all duration-300`}>
+                    <div
+                      className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${info.color} flex items-center justify-center mr-4 group-hover:shadow-lg transition-all duration-300`}
+                    >
                       <info.icon className="text-white text-xl" />
                     </div>
                     <div>
@@ -157,10 +186,15 @@ const ContactSection: React.FC = () => {
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
             <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Send Message
+              </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-gray-300 text-sm font-medium mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-gray-300 text-sm font-medium mb-2"
+                  >
                     Your Name
                   </label>
                   <input
@@ -176,7 +210,10 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gray-300 text-sm font-medium mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-gray-300 text-sm font-medium mb-2"
+                  >
                     Email Address
                   </label>
                   <input
@@ -192,7 +229,10 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-gray-300 text-sm font-medium mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-gray-300 text-sm font-medium mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -209,13 +249,24 @@ const ContactSection: React.FC = () => {
 
                 <motion.button
                   type="submit"
-                  className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 disabled:opacity-50"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Send className="mr-2" size={20} />
-                  Send Message
+                  {loading ? "Sending..." : <><Send className="mr-2" size={20} /> Send Message</>}
                 </motion.button>
+
+                {status === "success" && (
+                  <p className="text-green-400 text-sm mt-2">
+                    ✅ Message sent successfully!
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-red-400 text-sm mt-2">
+                    ❌ Failed to send. Please try again later.
+                  </p>
+                )}
               </form>
             </div>
           </motion.div>
