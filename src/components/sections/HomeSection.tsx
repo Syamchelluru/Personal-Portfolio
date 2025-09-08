@@ -85,6 +85,7 @@ const HomeSection: React.FC = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4"
           variants={itemVariants}
         >
+          {/* Download Resume */}
           <motion.a
             href="SYAM_RESUME.pdf"
             download
@@ -96,14 +97,17 @@ const HomeSection: React.FC = () => {
             Download Resume
           </motion.a>
 
-          <motion.button
+          {/* View Resume */}
+          <motion.a
+            href="SYAM_RESUME.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border border-gray-400 text-gray-300 font-semibold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           >
-            View My Work
-          </motion.button>
+            View My Resume
+          </motion.a>
         </motion.div>
 
         {/* Contact Links */}
